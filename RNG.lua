@@ -7,8 +7,23 @@ local actions = {
 
 local sets = {
     -- Haste == Attack here, useful when sharpshot overcaps us
+    ['StrHaste'] = {
+        Head = 'Pumpkin Head',
+        Neck = 'Spike Necklace',
+        Ear1 = 'Genin Earring',
+        Ear2 = 'Drone Earring',
+        Body = 'Savage Separates',
+        Hands = 'Noct Gloves +1',
+        -- Ring1 = Str ring+
+        Ring1 = 'Beetle Ring +1',
+        Ring2 = 'Rajas Ring',
+        Waist = 'Brave Belt',
+        Back = 'Nomad\'s Mantle',
+        Legs = 'Noct Brais +1',
+        Feet = 'Savage Gaiters',
+    },
     ['TpHaste'] = {
-        Head = 'Noct Beret +1',
+        Head = 'Pumpkin Head',
         Neck = 'Peacock Amulet',
         Ear1 = 'Genin Earring',
         Ear2 = 'Drone Earring',
@@ -105,8 +120,13 @@ end
 
 profile.HandleDefault = function()
     local player = gData.GetPlayer();
+    local sa = gData.GetBuffCount('Sharpshot');
     if (player.Status == 'Engaged') then
-        gFunc.EquipSet('Tp' .. gcinclude.TpVariantTable[gcinclude.TpVariant]);
+        if(sa == 1) then 
+            gFunc.EquipSet('Str' .. gcinclude.TpVariantTable[gcinclude.TpVariant]);
+        else
+            gFunc.EquipSet('Tp' .. gcinclude.TpVariantTable[gcinclude.TpVariant]);
+        end
     elseif (player.Status == 'Resting') then
         gFunc.EquipSet(sets.Resting);
     else
