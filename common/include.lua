@@ -1,15 +1,5 @@
 local gcinclude = T{};
 
---[[
-Several commands are enabled here
-Select fishing mode:
-/fishing normal, /fishing legendary, and /fishing items
-/fishing cancel will exit fishing mode
-Select crafting mode:
-/crafting bonecraft, /crafting whatver
-/crafting cancel will exit crafting mode
---]]
-
 local function getKeyByValue(tbl, value)
     for k, v in pairs(tbl) do
         if string.lower(v) == string.lower(value) then
@@ -184,7 +174,7 @@ function gcinclude.HandleCommands(args)
         print('TP Set: \31\220' .. gcinclude.TpVariantTable[gcinclude.TpVariant]);
 	elseif (args[1]) == 'crafting' then
 		gcinclude.Crafting = true;
-		gcinclude.Fishing = false; -- just in case
+		gcinclude.Gathering = false; -- just in case
 		-- Check our table for an entry, else it's likely 'cancel', 'exit', etc
 		gcinclude.CraftingVariant = getKeyByValue(gcinclude.CraftingVariantTable, args[2]);
 		if (gcinclude.CraftingVariant == 0 or args[2] == 'cancel') then
