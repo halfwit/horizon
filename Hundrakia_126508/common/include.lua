@@ -199,8 +199,8 @@ function gcinclude.HandleCommands(args)
 		gcinclude.Gathering = true;
 		gcinclude.Crafting = false; -- just in case
 		-- Check our table for an entry, else it's likely 'cancel', 'exit', etc
-		gcinclude.FishingVariant = getKeyByValue(gcinclude.GatheringVariantTable, args[2]);
-		if (gcinclude.FishingVariant == 0 or args[2] == 'cancel') then
+		gcinclude.GatheringVariant = getKeyByValue(gcinclude.GatheringVariantTable, args[2]);
+		if (gcinclude.GatheringVariant == 0 or args[2] == 'cancel') then
 			AshitaCore:GetChatManager():QueueCommand(-1, '/addon unload hgather');
             print('Gathering mode: \31\167off');
 			gcinclude.Gathering = false;
