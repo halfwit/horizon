@@ -8,14 +8,14 @@ local actions = {
 local sets = {
     -- Haste == Attack here, useful when sharpshot overcaps us
     ['StrHaste'] = {
-        Head = 'Pumpkin Head',
+        Head = 'Noct Beret +1',
         Neck = 'Spike Necklace',
         Ear1 = 'Genin Earring',
         Ear2 = 'Drone Earring',
         Body = 'Savage Separates',
         Hands = 'Noct Gloves +1',
         -- Ring1 = Str ring+
-        Ring1 = 'Beetle Ring +1',
+        Ring1 = 'Marksman\'s Ring',
         Ring2 = 'Rajas Ring',
         Waist = 'Brave Belt',
         Back = 'Nomad\'s Mantle',
@@ -23,14 +23,13 @@ local sets = {
         Feet = 'Savage Gaiters',
     },
     ['TpHaste'] = {
-        Head = 'Pumpkin Head',
+        Head = 'Noct Beret +1',
         Neck = 'Peacock Amulet',
         Ear1 = 'Genin Earring',
         Ear2 = 'Drone Earring',
         Body = 'Noct Doublet +1',
         Hands = 'Noct Gloves +1',
-        Ring1 = 'Beetle Ring +1',
-        --Ring2 = 'Beetle Ring +1',
+        Ring1 = 'Marksman\'s Ring',
         Ring2 = 'Rajas Ring',
         Waist = 'Brave Belt',
         Back = 'Nomad\'s Mantle',
@@ -44,8 +43,7 @@ local sets = {
         Ear2 = 'Drone Earring',
         Body = 'Noct Doublet +1',
         Hands = 'Noct Gloves +1',
-        Ring1 = 'Beetle Ring +1',
-        --Ring2 = 'Beetle Ring +1',
+        Ring1 = 'Marksman\'s Ring',
         Ring2 = 'Rajas Ring',
         Waist = 'Brave Belt',
         Back = 'Nomad\'s Mantle',
@@ -59,8 +57,7 @@ local sets = {
         Ear2 = 'Drone Earring',
         Body = 'Noct Doublet +1',
         Hands = 'Noct Gloves +1',
-        Ring1 = 'Beetle Ring +1',
-        --Ring2 = 'Beetle Ring +1',
+        Ring1 = 'Marksman\'s Ring',
         Ring2 = 'Rajas Ring',
         Waist = 'Brave Belt',
         Back = 'Nomad\'s Mantle',
@@ -81,8 +78,8 @@ local sets = {
         -- Ear2 = 'Drone Earring',
         Body = 'Noct Doublet +1',
         Hands = 'Noct Gloves +1',
-        Ring1 = 'Beetle Ring +1',
-        Ring2 = 'Beetle Ring +1',
+        Ring1 = 'Marksman\'s Ring',
+        Ring2 = 'Crossbowmas Ring',
         Waist = 'Brave Belt',
         Back = 'Nomad\'s Mantle',
         Legs = 'Noct Brais +1',
@@ -120,9 +117,9 @@ end
 
 profile.HandleDefault = function()
     local player = gData.GetPlayer();
-    local sa = gData.GetBuffCount('Sharpshot');
+    local ss = gData.GetBuffCount('Sharpshot');
     if (player.Status == 'Engaged') then
-        if(sa == 1) then 
+        if(ss  == 1) then 
             gFunc.EquipSet('Str' .. gcinclude.TpVariantTable[gcinclude.TpVariant]);
         else
             gFunc.EquipSet('Tp' .. gcinclude.TpVariantTable[gcinclude.TpVariant]);
