@@ -1,6 +1,16 @@
 local gcinclude = T{};
 
-local function getKeyByValue(tbl, value)
+--[[
+Several commands are enabled here
+Select fishing mode:
+/fishing normal, /fishing legendary, and /fishing items
+/fishing cancel will exit fishing mode
+Select crafting mode:
+/crafting bonecraft, /crafting whatver
+/crafting cancel will exit crafting mode
+--]]
+
+function getKeyByValue(tbl, value)
     for k, v in pairs(tbl) do
         if string.lower(v) == string.lower(value) then
             return k
@@ -55,9 +65,9 @@ gcinclude.sets = {
 -- All Aliases we want
 gcinclude.AliasList = T{
 	'toggleTreasureHunter',
-    'telegraphSkills',
+    	'telegraphSkills',
 	'changeTPMode',
-	'gather',
+	'helm',
 	'craft',
 };
 
@@ -143,10 +153,7 @@ end
 
 function gcinclude.Initialize()
 	-- Load some defaults
-    AshitaCore:GetChatManager():QueueCommand(-1, '/fps 1');
 	AshitaCore:GetChatManager():QueueCommand(-1, '/localsettings blureffect off');
-    AshitaCore:GetChatManager():QueueCommand(-1, '/addon load xicamera');
-	AshitaCore:GetChatManager():QueueCommand(-1, '/addon load points');
 
 	-- Run our init
 	gcinclude.SetAlias:once(2);
@@ -155,7 +162,10 @@ end
 
 function gcinclude.TelegraphAction(actions, target)
 	if not gcinclude.Telegraphed then return end
-	AshitaCore:GetChatManager():AddChatMessage(4, 0, actions[target]);
+	local msg = actions[target];
+	if not (msg == nil) then
+		AshitaCore:GetChatManager():QueueCommand(-1, '/party ' .. msg);
+	end
 end
 
 function gcinclude.HandleCommands(args)
@@ -174,7 +184,7 @@ function gcinclude.HandleCommands(args)
         print('TP Set: \31\220' .. gcinclude.TpVariantTable[gcinclude.TpVariant]);
 	elseif (args[1]) == 'crafting' then
 		gcinclude.Crafting = true;
-		gcinclude.Gathering = false; -- just in case
+		gcinclude.Fishing = false; -- just in case
 		-- Check our table for an entry, else it's likely 'cancel', 'exit', etc
 		gcinclude.CraftingVariant = getKeyByValue(gcinclude.CraftingVariantTable, args[2]);
 		if (gcinclude.CraftingVariant == 0 or args[2] == 'cancel') then
@@ -185,7 +195,7 @@ function gcinclude.HandleCommands(args)
     		AshitaCore:GetChatManager():QueueCommand(-1, '/macro set 1');
 			print('Crafting mode: \31\213' .. gcinclude.CraftingVariantTable[gcinclude.CraftingVariant]);
 		end
-    elseif (args[1] == 'gather') then
+    elseif (args[1] == 'helm') then
 		gcinclude.Gathering = true;
 		gcinclude.Crafting = false; -- just in case
 		-- Check our table for an entry, else it's likely 'cancel', 'exit', etc
