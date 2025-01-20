@@ -12,29 +12,29 @@ local sets = {
     TpHaste = {
         Head	= 'Panther Mask',
         Neck	= 'Peacock Amulet',
-        Ear1	= 'Spike Earring',
+        Ear1	= 'Brutal Earring',
         Ear2	= 'Suppanomimi',
         Body	= 'Rapparee Harness',
         Hands	= 'Dusk Gloves',
         Ring1	= 'Toreador\'s Ring',
         Ring2	= 'Rajas Ring',
-        Back	= 'Amemet Mantle',
+        Back	= 'Amemet Mantle +1',
         Waist	= 'Swift Belt',
-        Legs	= 'Bravo\'s Subligar',
+        Legs	= 'Homam Cosciales',
         Feet	= 'Dusk Ledelsens',
     },
     TpBalanced = {
         Head	= 'Optical Hat',
         Neck	= 'Peacock Amulet',
-        Ear1	= 'Spike Earring',
+        Ear1	= 'Brutal Earring',
         Ear2	= 'Suppanomimi',
         Body	= 'Rapparee Harness',
         Hands	= 'Dusk Gloves',
         Ring1	= 'Toreador\'s Ring',
         Ring2	= 'Rajas Ring',
-        Back	= 'Amemet Mantle',
+        Back	= 'Amemet Mantle +1',
         Waist	= 'Swift Belt',
-        Legs	= 'Bravo\'s Subligar',
+        Legs	= 'Homam Cosciales',
         Feet	= 'Dusk Ledelsens',
     },
     TpAccuracy = {
@@ -46,7 +46,7 @@ local sets = {
         Hands	= 'War Gloves +1',
         Ring1	= 'Toreador\'s Ring',
         Ring2	= 'Rajas Ring',
-        Back	= 'Amemet Mantle',
+        Back	= 'Amemet Mantle +1',
         Waist	= 'Swift Belt',
         Legs	= 'Dragon Subligar',
         Feet	= 'Dusk Ledelsens',
@@ -75,8 +75,8 @@ local sets = {
         Hands	= 'Hecatomb Mittens',
         Ring1	= 'Thunder Ring',
         Ring2	= 'Rajas Ring',
-        Back	= 'Amemet Mantle',
-        Waist	= 'Ryl.Kgt. Belt',
+        Back	= 'Amemet Mantle +1',
+        Waist	= 'Warwolf Belt',
         Legs	= 'Dragon Subligar',
         Feet	= 'Hct. Leggings',
     },
@@ -84,7 +84,7 @@ local sets = {
         Head = 'Optical Hat',
         Body	= 'Scorpion Harness',
         Neck	= 'Evasion Torque',
-        Ear1	= 'Genin Earring',
+        Ear1	= 'Brutal Earring',
         Ear2	= 'Suppanomimi', 
         Hands	= 'War Gloves +1',
         Ring1	= 'Breeze Ring',
@@ -104,9 +104,9 @@ local sets = {
         Hands	= 'Dragon Mittens',
         Ring1	= 'Behemoth Ring',
         Ring2	= 'Behemoth Ring',
-        Back	= 'Amemet Mantle',
-        Waist	= 'Ryl.Kgt. Belt',
-        Legs	= 'Rogue\'s Culottes',
+        Back	= 'Amemet Mantle +1',
+        Waist	= 'Ryl.Kgt. Belt +1',
+        Legs	= 'Dusk Trousers',
         Feet	= 'Dragon Leggings',
     },
     TrickAttack = {
@@ -118,8 +118,8 @@ local sets = {
         Hands	= 'Rog. Armlets +1',
         Ring1	= 'Breeze Ring',
         Ring2	= 'Rajas Ring',
-        Back	= 'Amemet Mantle',
-        Waist	= 'Ryl.Kgt. Belt',
+        Back	= 'Amemet Mantle +1',
+        Waist	= 'Warwolf Belt',
         Legs	= 'Rogue\'s Culottes',
         Feet	= 'Dragon Leggings',
     },
@@ -204,7 +204,7 @@ end
 
 profile.HandleMidcast = function()
     gFunc.EquipSet(sets.TpEvasion);
-    -- casting interrupt gorget?
+    gFunc.Equip('Legs', 'Homam Cosciales');
 end
 
 profile.HandlePreshot = function()
@@ -220,6 +220,7 @@ profile.HandleWeaponskill = function()
 	if string.match(ws.Name, 'Evisceration') then
         -- TODO: Create a evisceration-specific set
 		gFunc.EquipSet(sets.SneakAttack);
+		gFunc.Equip('body', 'Hecatomb Harness');
 	end
     gcinclude.TelegraphAction(actions, ws.Name);
 end

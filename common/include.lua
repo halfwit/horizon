@@ -54,7 +54,7 @@ gcinclude.sets = {
 	GatheringLogging = {
 		Body	= 'Field Tunica',
 		Hands	= 'Field Gloves',
-		Gloves	= 'Field Hose',
+		Legs = 'Field Hose',
 	},
 	CraftingBonecraft = {
 		Head	= 'Protective Spectacles',
